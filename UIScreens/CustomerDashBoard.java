@@ -32,6 +32,7 @@ public class CustomerDashBoard extends JFrame implements ActionListener{
 
     JButton logOutButton;
     JLabel userNameLabel;
+    JLabel firstNameLabel;
     JButton cartButton;
 
     
@@ -65,6 +66,7 @@ public class CustomerDashBoard extends JFrame implements ActionListener{
         centerPanel = new JPanel(new GridLayout(2,3,50,50));
         logOutButton = new JButton();
         userNameLabel = new JLabel("Welcome "+user.getUserName());
+        firstNameLabel = new JLabel(user.getFirstName()+" "+user.getLastName());
 
 
 
@@ -94,6 +96,14 @@ public class CustomerDashBoard extends JFrame implements ActionListener{
         userNameLabel.setBounds(0,20,150,20);
         userNameLabel.setForeground(UIColor.SLATE_RED);
         userNameLabel.setFont(new Font("Times New Roman",Font.BOLD,15));
+
+        firstNameLabel.setBounds(0,90,150,20);
+        firstNameLabel.setForeground(UIColor.SLATE_RED);
+        firstNameLabel.setFont(new Font("Times New Roman",Font.BOLD,25));
+
+
+
+
 
         
 //Creating Image Icons From Placing In JButtons;
@@ -165,6 +175,7 @@ public class CustomerDashBoard extends JFrame implements ActionListener{
         leftSidePanel.add(logOutButton);
         leftSidePanel.add(cartButton);
         leftSidePanel.add(userNameLabel);
+        leftSidePanel.add(firstNameLabel);
         
 
         this.add(topPanel);
@@ -178,6 +189,10 @@ public class CustomerDashBoard extends JFrame implements ActionListener{
         if(e.getSource() == logOutButton){
             this.dispose();
             new UserLogInFrame();
+        }
+        else if (e.getActionCommand().equals("Cart")){
+            this.dispose();
+            new CartDetailScreen(user);
         }
         else{
             this.dispose();

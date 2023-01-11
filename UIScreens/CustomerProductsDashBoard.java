@@ -16,7 +16,9 @@ import java.awt.event.ActionListener;
 
 import ActorsAndActions.User;
 import FrameColor.UIColor;
+import GroceryStore.Cart;
 import GroceryStore.Items;
+import SystemDataControllers.CartFileIO;
 import SystemDataControllers.ItemsFileIO;
 
 public class CustomerProductsDashBoard extends JFrame implements ActionListener {
@@ -49,7 +51,7 @@ public class CustomerProductsDashBoard extends JFrame implements ActionListener 
 
         ItemsFileIO fIO = new ItemsFileIO();
         itemsList = fIO.readItemsFromFile();
-        //System.out.println("Size is :::::::  " + itemsList.size());
+        // System.out.println("Size is ::::::: " + itemsList.size());
 
         this.setLayout(null);
         this.setSize(800, 550);
@@ -147,6 +149,19 @@ public class CustomerProductsDashBoard extends JFrame implements ActionListener 
             new CustomerDashBoard(user);
         } else if (e.getActionCommand().equals("Cart")) {
             System.out.println("CART");
+        }
+        else{
+
+            CartFileIO cartFileIO = new CartFileIO();
+            Items it = null;
+            for (Items items : itemsList) {
+                if(e.getActionCommand().equals(items.getItemName())){
+                    it = items;
+                    break;
+                }
+            }
+            Cart cart = new Cart(user.getUserName(),it);
+            cartFileIO.addUserCart(cart);
         }
 
     }
