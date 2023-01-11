@@ -138,6 +138,7 @@ public class CustomerDashBoard extends JFrame implements ActionListener{
                 categoryButtons.setText(category.getCategoryName());
                 categoryButtons.setForeground(UIColor.SLATE_RED);
                 categoryButtons.setBackground(UIColor.WHITE);
+                categoryButtons.setToolTipText(category.getCategoryName());
                 categoryButtons.setBorder(BorderFactory.createLineBorder(UIColor.SLATE_RED,5));
                 categoryButtons.setFocusable(false);
                 categoryButtons.addActionListener(this);

@@ -160,5 +160,9 @@ public class AdminMenuScreen extends JFrame implements ActionListener{
             this.dispose();
             new AdminLogInFrame();
        }
+       else if(e.getActionCommand().equals("Add Items")){
+          this.dispose();
+          new AddNewItems(admin);
+       }
     }
 }
