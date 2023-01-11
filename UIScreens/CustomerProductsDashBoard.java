@@ -149,7 +149,10 @@ public class CustomerProductsDashBoard extends JFrame implements ActionListener 
             new CustomerDashBoard(user);
         } else if (e.getActionCommand().equals("Cart")) {
             System.out.println("CART");
+            this.dispose();
+            new CartDetailScreen(user);
         }
+
         else{
 
             CartFileIO cartFileIO = new CartFileIO();

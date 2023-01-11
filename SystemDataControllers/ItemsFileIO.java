@@ -113,4 +113,49 @@ public class ItemsFileIO implements Serializable {
         }
         return itemsList;
     }
+
+    @SuppressWarnings("all")
+    public void deleteItems(int itemsID){
+        Items toBeDeleted = null;
+        boolean result = false;
+        if(itemsFile.exists() && itemsFile.isFile()){
+            try{
+                fileReader = new ObjectInputStream(new FileInputStream(itemsFile));
+                while(true){
+                    itemsList = (ArrayList<Items>) fileReader.readObject();
+                }
+            }catch(EOFException e){
+                for (Items items : itemsList) {
+                    if(items.getItemID() == itemsID){
+                        toBeDeleted = items;
+                        itemsList.remove(toBeDeleted);
+                        result = true;
+                        break;
+                    }
+                }
+                if(!result){
+                    JOptionPane.showMessageDialog(new JFrame(), "Item not found");
+                }
+                else{
+                    try{
+                        fileWriter = new ObjectOutputStream(new FileOutputStream(itemsFile));
+                        fileWriter.writeObject(itemsList);
+                        fileWriter.flush();
+                        JOptionPane.showMessageDialog(new JFrame(), "Item Deleted Successfully");
+                        fileWriter.close();
+                    }catch(IOException d){
+                        d.printStackTrace();
+                        return;
+                    }
+                }
+            }catch(IOException | ClassNotFoundException e){
+                e.printStackTrace();
+                return;
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(new JFrame(),"Item not found");
+            return;
+        }
+    }
 }
