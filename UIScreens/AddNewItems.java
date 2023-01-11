@@ -188,7 +188,7 @@ public class AddNewItems extends JFrame implements ActionListener {
             new AdminMenuScreen(admin);
         } else if (e.getActionCommand().equals("Select Image")) {
             JFileChooser fileChooser = new JFileChooser();
-            fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Images", "jpg", "png", "gif", "bmp"));
+            fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Images", "jpeg", "png", "gif", "bmp"));
             fileChooser.setAcceptAllFileFilterUsed(false);
             fileChooser.setCurrentDirectory(new File(currentPath + "/Images"));
             int response = fileChooser.showOpenDialog(null);
@@ -221,7 +221,7 @@ public class AddNewItems extends JFrame implements ActionListener {
                 double itemsPrice = Double.parseDouble(itemsPriceField.getText());
                 String image = itemsFile.toString();
                 fileIO.writeItemsToFile(new Items(itemName, newCat, itemsPrice, itemQuantity, itemsID, image));
-                JOptionPane.showMessageDialog(new JFrame(), "Item Added Successfully in  " + newCat.getCategoryName());
+                //JOptionPane.showMessageDialog(new JFrame(), "Item Added Successfully in  " + newCat.getCategoryName());
             }
 
         }
